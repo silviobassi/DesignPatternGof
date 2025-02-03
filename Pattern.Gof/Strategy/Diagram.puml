@@ -19,10 +19,6 @@ class PixStrategy {
    +Cpf: string
    +Cnpj: string
    +Cellphone: string
-   +SelectKey(string key)
-   +SelectKeyCpf(string cpf)
-   +SelectKeyCnpj(string cnpj)
-   +SelectCellphone(string cellphone)
    +Pay(double amount)
 }
 

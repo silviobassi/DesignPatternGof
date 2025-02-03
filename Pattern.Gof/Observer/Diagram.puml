@@ -1,41 +1,46 @@
 ﻿@startuml
 
-interface IListener {
-   +Update(SchedulePublisher)
+interface ISubscriber {
+   +Update(IPublisher))
 }
 
-interface Publisher {
+interface IPublisher {
    +Subscribe(IListener)
    +Unsubscribe(IListener)
    +Notify()
 }
 
 class SchedulePublisher {
-   -Listeners: List<IListener>
+   -Listeners: List<ISubscriber>
+    +Subscribe(ISubscriber)
+    +Unsubscribe(ISubscriber)
+    +Notify()
 }
 
 class ProfessionalSubscriber {
    -Name : string
    -Email: string
+   +Update(IPublisher)
 }
 
 class CustomerSubscriber {
    -Name : string
    -Email: string
+    +Update(IPublisher)
 }
 
 class Program {
   
 }
 
-Publisher <|.. SchedulePublisher
-IListener <|.. ProfessionalSubscriber
-IListener <|.. CustomerSubscriber
+IPublisher <|.. SchedulePublisher
+ISubscriber <|.. ProfessionalSubscriber
+ISubscriber <|.. CustomerSubscriber
 
 Program --> CustomerSubscriber
 Program --> ProfessionalSubscriber
 Program --> SchedulePublisher
 
-SchedulePublisher o--> IListener
+SchedulePublisher o--> ISubscriber
 
 @enduml
