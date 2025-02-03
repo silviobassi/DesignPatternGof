@@ -1,0 +1,41 @@
+﻿@startuml
+
+interface IListener {
+   +Update(SchedulePublisher)
+}
+
+interface Publisher {
+   +Subscribe(IListener)
+   +Unsubscribe(IListener)
+   +Notify()
+}
+
+class SchedulePublisher {
+   -Listeners: List<IListener>
+}
+
+class ProfessionalSubscriber {
+   -Name : string
+   -Email: string
+}
+
+class CustomerSubscriber {
+   -Name : string
+   -Email: string
+}
+
+class Program {
+  
+}
+
+Publisher <|.. SchedulePublisher
+IListener <|.. ProfessionalSubscriber
+IListener <|.. CustomerSubscriber
+
+Program --> CustomerSubscriber
+Program --> ProfessionalSubscriber
+Program --> SchedulePublisher
+
+SchedulePublisher o--> IListener
+
+@enduml

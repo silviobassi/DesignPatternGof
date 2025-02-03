@@ -1,0 +1,43 @@
+﻿@startuml
+
+abstract class AbstractPaymentStrategy {
+   +Pay(double amount)
+}
+
+class CreditCardStrategy {
+   +CardNumber: string
+   +CardHolder: string
+   +ExpiryDate: string
+   +Cvv: string
+   +Pay(double amount)
+}
+
+class PixStrategy {
+   +Key: string
+   +Name: string
+   +Bank: string
+   +Cpf: string
+   +Cnpj: string
+   +Cellphone: string
+   +SelectKey(string key)
+   +SelectKeyCpf(string cpf)
+   +SelectKeyCnpj(string cnpj)
+   +SelectCellphone(string cellphone)
+   +Pay(double amount)
+}
+
+class Purchase {
+   +ProcessPayment(double amount)
+}
+
+class Program {}
+
+AbstractPaymentStrategy <|-- CreditCardStrategy
+AbstractPaymentStrategy <|-- PixStrategy
+Purchase o--> AbstractPaymentStrategy
+
+Program --> Purchase
+Program --> CreditCardStrategy
+Program --> PixStrategy
+
+@enduml
