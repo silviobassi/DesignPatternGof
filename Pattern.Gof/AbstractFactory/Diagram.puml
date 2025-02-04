@@ -1,0 +1,60 @@
+﻿@startuml
+
+interface IMainDish {
+   +void DisplayInfo()
+}
+
+interface IMainDessert {
+   +void DisplayInfo()
+}
+
+interface IRestaurantFactory {
+   +IMainDish CreateMainDish()
+   +IMainDessert CreateMainDessert()
+}
+
+class GrilledRump {
+   +void DisplayInfo()
+}
+
+class StrawberryPie {
+   +void DisplayInfo()
+}
+
+class Sushi {
+   +void DisplayInfo()
+}
+
+class Mochi {
+   +void DisplayInfo()
+}
+
+class BrazilianRestaurantFactory {
+   +IMainDish CreateMainDish()
+   +IMainDessert CreateMainDessert()
+}
+
+class JapaneseRestaurantFactory {
+   +IMainDish CreateMainDish()
+   +IMainDessert CreateMainDessert()
+}
+
+class ClientAbstractFactory {
+   +ClientAbstractFactory(IRestaurantFactory restaurantFactory)
+   +void DisplayMeal()
+}
+
+IMainDish <|.. GrilledRump
+IMainDish <|.. Sushi
+IMainDessert <|.. StrawberryPie
+IMainDessert <|.. Mochi
+IRestaurantFactory <|.. BrazilianRestaurantFactory
+IRestaurantFactory <|.. JapaneseRestaurantFactory
+ClientAbstractFactory o--> IRestaurantFactory
+
+BrazilianRestaurantFactory *--> GrilledRump
+BrazilianRestaurantFactory *--> StrawberryPie
+JapaneseRestaurantFactory *--> Sushi
+JapaneseRestaurantFactory *--> Mochi
+
+@enduml
